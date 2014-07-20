@@ -1,0 +1,9 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/custom_theme_color"
+    android:id="@+id/REL_Main"
+    android:clickable="false">
+
+</RelativeLayout>
