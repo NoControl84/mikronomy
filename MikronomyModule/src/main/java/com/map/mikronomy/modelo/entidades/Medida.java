@@ -1,4 +1,4 @@
-package com.map.mikronomy.modelo.beans;
+package com.map.mikronomy.modelo.entidades;
 
 /**
  * Created by Mikel on 16/07/2014.
