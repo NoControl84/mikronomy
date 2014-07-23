@@ -1,6 +1,6 @@
 package com.map.mikronomy.modelo.entidades;
 
-import com.map.mikronomy.activities.Productos;
+import com.map.mikronomy.activities.ProductosActivity;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
@@ -20,7 +20,7 @@ public class Marca extends Entity {
 
     public Marca() {
         this.nombreMarca = "Marca blanca";
-        this.productos = new ArrayList<Productos>();
+        this.productos = new ArrayList<ProductosActivity>();
     }
 
     public String getNombreMarca() {

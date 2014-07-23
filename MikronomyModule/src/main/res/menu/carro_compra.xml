@@ -1,15 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.map.mikronomy.activities.CarroCompra" >
+    tools:context="com.map.mikronomy.activities.CarroCompraActivity" >
     <item android:id="@+id/ABM_Productos"
         android:icon="@drawable/productos_icon_action_bar"
         android:title="@string/action_productos"
         android:orderInCategory="100"
-        app:showAsAction="ifRoom|withText" />
-    <item android:id="@+id/ABM_CarroCompra"
-        android:icon="@drawable/carrito_icon_action_bar"
-        android:title="@string/action_carro"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="withText" />
+
 </menu>
