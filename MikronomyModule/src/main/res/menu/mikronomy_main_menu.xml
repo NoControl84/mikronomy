@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.map.mikronomy.activities.Productos" >
+    tools:context=".Mikronomy" >
     <item android:id="@+id/ABM_Productos"
         android:icon="@drawable/productos_icon_action_bar"
         android:title="@string/action_productos"

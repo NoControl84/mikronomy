@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light">
+    <color name="custom_theme_color">#fffdfff0</color>
+    <style name="MikronomyTheme" parent="android:Theme.Holo.Light.DarkActionBar">
     </style>
 </resources>
