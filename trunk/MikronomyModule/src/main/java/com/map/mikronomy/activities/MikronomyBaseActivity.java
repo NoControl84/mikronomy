@@ -1,22 +1,20 @@
 package com.map.mikronomy.activities;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.map.mikronomy.R;
 
-
-public class Mikronomy extends ActionBarActivity{
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(com.map.mikronomy.R.layout.activity_mikronomy);
-    }
-
+/**
+ * Created by Mikel on 23/07/2014.
+ */
+public abstract class MikronomyBaseActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -24,9 +22,6 @@ public class Mikronomy extends ActionBarActivity{
         MenuInflater inflator = getMenuInflater();
         inflator.inflate(com.map.mikronomy.R.menu.mikronomy_main_menu, menu);
         return super.onCreateOptionsMenu(menu);
-
-        //getMenuInflater().inflate(com.map.mikronomy.R.menu.mikronomy_main_menu, menu);
-        //return true;
     }
 
     @Override
@@ -35,13 +30,23 @@ public class Mikronomy extends ActionBarActivity{
 
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.ABM_Productos) {
-            return true;
+        try {
+            switch (item.getItemId()) {
+                case R.id.ABM_Productos:
+                    Intent productoIntent = new Intent(this, ProductosActivity.class);
+                    this.startActivity(productoIntent);
+                    break;
+
+                case R.id.ABM_CarroCompra:
+                    Intent carritoIntent = new Intent(this, CarroCompraActivity.class);
+                    this.startActivity(carritoIntent);
+                    break;
+            }
+        } catch(Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        if (id == R.id.ABM_CarroCompra) {
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
+
 }
