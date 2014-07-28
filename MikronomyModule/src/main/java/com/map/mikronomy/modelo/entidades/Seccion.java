@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Created by Mikel on 16/07/2014.
  */
-@Table(name = "Categoria")
-public class Categoria extends Entity{
+@Table(name = "Seccion")
+public class Seccion extends Entity{
     @TableField(name = "Descripcion", datatype = DATATYPE_STRING, required = true, unique = true)
     private String descripcion;
     @TableField(name = "Producto", datatype = DATATYPE_ENTITY)

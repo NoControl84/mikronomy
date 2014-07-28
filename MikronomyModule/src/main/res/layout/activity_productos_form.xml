@@ -6,11 +6,104 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.map.mikronomy.activities.ProductosFormActivity">
+    tools:context="com.map.mikronomy.activities.ProductosFormActivity"
+    android:id="@+id/REL_ProductosForm">
+    <TextView
+        android:id="@+id/LAB_MarcaProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_marca_producto"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/TXT_Marca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LAB_MarcaProducto"
+        android:ems="10" />
+    <TextView
+        android:id="@+id/LAB_NombreProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_nombre_producto"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/TXT_Marca"
+        android:layout_marginTop="20dp" />
+    <EditText
+        android:id="@+id/TXT_NombreProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LAB_NombreProducto"
+        android:ems="10" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tienda"
+        android:id="@+id/LAB_Tienda"
+        android:layout_below="@+id/TXT_NombreProducto"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SPI_Tienda"
+        android:layout_below="@+id/LAB_Tienda"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/BUT_AddTienda"
+        android:layout_toStartOf="@+id/BUT_AddTienda"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir tienda"
+        android:id="@+id/BUT_AddTienda"
+        android:layout_alignTop="@+id/SPI_Tienda"
+        android:layout_alignRight="@+id/TXT_NombreProducto"
+        android:layout_alignEnd="@+id/TXT_NombreProducto"
+        android:layout_alignBottom="@+id/SPI_Tienda" />
 
     <TextView
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Secciones"
+        android:id="@+id/LAB_Secciones"
+        android:layout_below="@+id/SPI_Tienda"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SPI_Secciones"
+        android:layout_toStartOf="@+id/BUT_AddTienda"
+        android:layout_below="@+id/LAB_Secciones"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Precio"
+        android:id="@+id/LAB_Precio"
+        android:layout_below="@+id/SPI_Secciones"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/DecTXT_Precio"
+        android:layout_below="@+id/LAB_Precio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
