@@ -8,5 +8,6 @@
     <string name="action_carro">Carro compra</string>
     <string name="title_activity_productos">Productos</string>
     <string name="title_activity_carro_compra">CarroCompra</string>
+    <string name="title_activity_productos_form">ProductosFormActivity</string>
 
 </resources>

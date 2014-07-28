@@ -1,8 +1,8 @@
 package com.map.mikronomy.activities;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,16 +11,21 @@ import android.widget.Toast;
 
 import com.map.mikronomy.R;
 
-/**
- * Created by Mikel on 23/07/2014.
- */
 public abstract class MikronomyBaseActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflator = getMenuInflater();
         inflator.inflate(com.map.mikronomy.R.menu.mikronomy_main_menu, menu);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+
         return super.onCreateOptionsMenu(menu);
     }
 
