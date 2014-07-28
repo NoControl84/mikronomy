@@ -2,7 +2,7 @@ package com.map.mikronomy.modelo.datacontexts;
 
 import android.content.Context;
 
-import com.map.mikronomy.modelo.entidades.Categoria;
+import com.map.mikronomy.modelo.entidades.Seccion;
 import com.map.mikronomy.modelo.entidades.Marca;
 import com.map.mikronomy.modelo.entidades.Producto;
 import com.map.mikronomy.modelo.entidades.ProductoTienda;
@@ -17,7 +17,7 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 public class MikronomyDataContext extends ObjectContext{
 
     public ObjectSet<Marca> marcaEntitySet;
-    public ObjectSet<Categoria> categoriaEntitySet;
+    public ObjectSet<Seccion> seccionEntitySet;
     public ObjectSet<Producto> productoEntitySet;
     public ObjectSet<Tienda> tiendaEntitySet;
     public ObjectSet<ProductoTienda> productoTiendaEntitySet;
@@ -26,7 +26,7 @@ public class MikronomyDataContext extends ObjectContext{
         super(pContext);
 
         this.marcaEntitySet = new ObjectSet<Marca>(Marca.class, this);
-        this.categoriaEntitySet = new ObjectSet<Categoria>(Categoria.class, this);
+        this.seccionEntitySet = new ObjectSet<Seccion>(Seccion.class, this);
         this.productoEntitySet = new ObjectSet<Producto>(Producto.class, this);
 
         this.tiendaEntitySet = new ObjectSet<Tienda>(Tienda.class, this);

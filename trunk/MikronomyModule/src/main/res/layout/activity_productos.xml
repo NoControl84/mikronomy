@@ -9,4 +9,13 @@
     tools:context="com.map.mikronomy.activities.ProductosActivity">
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Formulario producto"
+        android:id="@+id/BUT_FormProducto"
+        android:onClick="onCLick"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp" />
 </RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="seccion_array">
+        <item>Bodega</item>
+        <item>Droguería</item>
+        <item>Carnicería</item>
+        <item>Cremería</item>
+        <item>Textil</item>
+        <item>Parafarmacia</item>
+        <item>Perfumería</item>
+        <item>Panadería</item>
+        <item>Pescadería</item>
+        <item>Frutería</item>
+        <item>Bazar</item>
+        <item>Panadería</item>
+        <item>Charcutería</item>
+        <item>Otros</item>
+    </string-array>
+</resources>
