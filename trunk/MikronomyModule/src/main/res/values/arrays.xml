@@ -16,4 +16,9 @@
         <item>Charcutería</item>
         <item>Otros</item>
     </string-array>
+
+    <string-array name="medida_array">
+        <item>Unidad</item>
+        <item>Kg.</item>
+    </string-array>
 </resources>
