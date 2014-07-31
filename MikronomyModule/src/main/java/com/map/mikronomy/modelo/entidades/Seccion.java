@@ -4,6 +4,7 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,22 +14,8 @@ import java.util.List;
 public class Seccion extends Entity{
     @TableField(name = "Descripcion", datatype = DATATYPE_STRING, required = true, unique = true)
     private String descripcion;
-    @TableField(name = "Producto", datatype = DATATYPE_ENTITY)
-    private List productos;
+    @TableField(name = "Producto", datatype = DATATYPE_ENTITY_LINK)
+    private Producto producto;
 
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public List getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List productos) {
-        this.productos = productos;
-    }
 }
