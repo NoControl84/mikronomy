@@ -12,11 +12,4 @@ public class Tienda extends Entity{
     @TableField(name = "NombreTienda", datatype = DATATYPE_STRING, required = true, unique = true)
     private String nombreTienda;
 
-    public String getNombreTienda() {
-        return nombreTienda;
-    }
-
-    public void setNombreTienda(String nombreTienda) {
-        this.nombreTienda = nombreTienda;
-    }
 }
