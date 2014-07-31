@@ -16,4 +16,8 @@
     <string name="label_precio">Precio</string>
     <string name="label_secciones">Secciones</string>
     <string name="label_aniadir_tienda">Añadir tienda</string>
+    <string name="unidad_medida">Unidad de medida</string>
+    <string name="campo_obligatorio_marca">La marca del producto es obligatoria</string>
+    <string name="campo_obligatorio_producto">El nombre del producto es obligatorio</string>
+    <string name="label_aceptar">Aceptar</string>
 </resources>

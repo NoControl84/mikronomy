@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Mikronomy</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_productos">Productos</string>
+    <string name="action_carro">Carro compra</string>
+    <string name="title_activity_productos">Productos</string>
+    <string name="title_activity_carro_compra">CarroCompra</string>
+    <string name="title_activity_productos_form">ProductosFormActivity</string>
+
+    <string name="label_marca_producto">Marca</string>
+    <string name="label_nombre_producto">Nombre del producto</string>
+    <string name="label_tienda">Tienda</string>
+    <string name="label_precio">Precio</string>
     <string name="label_secciones">Secciones</string>
     <string name="label_aniadir_tienda">Añadir tienda</string>
+    <string name="unidad_medida">Unidad de medida</string>
+    <string name="campo_obligatorio_marca">La marca del producto es obligatoria</string>
+    <string name="campo_obligatorio_producto">El nombre del producto es obligatorio</string>
+    <string name="label_aceptar">Aceptar</string>
 </resources>

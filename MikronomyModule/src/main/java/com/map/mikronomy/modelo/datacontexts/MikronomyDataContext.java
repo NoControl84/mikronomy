@@ -9,6 +9,8 @@ import com.map.mikronomy.modelo.entidades.Marca;
 import com.map.mikronomy.modelo.entidades.Producto;
 import com.map.mikronomy.modelo.entidades.ProductoTienda;
 import com.map.mikronomy.modelo.entidades.Tienda;
+import com.map.mikronomy.modelo.helpers.DBHelper;
+import com.map.mikronomy.modelo.setters.TiendaObjectSet;
 import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
@@ -35,16 +37,33 @@ public class MikronomyDataContext extends ObjectContext{
     }
 
     private void inicializarContexto() throws AdaFrameworkException {
-        marcaEntitySet =
-                marcaEntitySet == null ? new ObjectSet<Marca>(Marca.class, this) : marcaEntitySet;
-        seccionEntitySet =
-                seccionEntitySet == null ? new ObjectSet<Seccion>(Seccion.class, this) : seccionEntitySet;
-        productoEntitySet =
-                productoEntitySet == null ? new ObjectSet<Producto>(Producto.class, this) : productoEntitySet;
-        tiendaEntitySet =
-                tiendaEntitySet == null ? new ObjectSet<Tienda>(Tienda.class, this) : tiendaEntitySet;
-        productoTiendaEntitySet =
-                productoTiendaEntitySet == null ? new ObjectSet<ProductoTienda>(ProductoTienda.class, this) : productoTiendaEntitySet;
+
+        //Enable DataBase Transactions to be used by the Save process.
+        this.setUseTransactions(true);
+
+        //Enable the creation of DataBase table indexes.
+        this.setUseTableIndexes(true);
+
+        //Enable LazyLoading capabilities.
+        //this.useLazyLoading(true);
+
+        //Set a custom encryption algorithm.
+        this.setEncryptionAlgorithm("AES");
+
+        //Set a custom encryption master pass phrase.
+        this.setMasterEncryptionKey("com.mikronomy.secure");
+
+        marcaEntitySet = marcaEntitySet == null ? new ObjectSet<Marca>(Marca.class, this) : marcaEntitySet;
+        seccionEntitySet = seccionEntitySet == null ? new ObjectSet<Seccion>(Seccion.class, this) : seccionEntitySet;
+        productoEntitySet = productoEntitySet == null ? new ObjectSet<Producto>(Producto.class, this) : productoEntitySet;
+        tiendaEntitySet = tiendaEntitySet == null ? new TiendaObjectSet(this) : tiendaEntitySet;
+        productoTiendaEntitySet = productoTiendaEntitySet == null ? new ObjectSet<ProductoTienda>(ProductoTienda.class, this) : productoTiendaEntitySet;
+
+        marcaEntitySet.fill(DBHelper.orderByColumn(Marca.COL_NOMBRE_MARCA, DBHelper.ASCENDING_SORT));
+        seccionEntitySet.fill(DBHelper.orderByColumn(Seccion.COL_DESCRIPCION, DBHelper.ASCENDING_SORT));
+        productoEntitySet.fill(DBHelper.orderByColumn(Producto.COL_NOMBRE_PRODUCTO, DBHelper.ASCENDING_SORT));
+        tiendaEntitySet.fill(DBHelper.orderByColumn(Tienda.COL_NOMBRE_TIENDA, DBHelper.ASCENDING_SORT));
+        productoTiendaEntitySet.fill(DBHelper.orderByColumn(ProductoTienda.COL_PRECIO, DBHelper.ASCENDING_SORT));
     }
 
     private static String getDataBaseFolder() {
@@ -63,6 +82,11 @@ public class MikronomyDataContext extends ObjectContext{
         }
 
         return folderPath;
+    }
+
+    @Override
+    protected void onError(Exception pException) {
+        ExceptionHelper.manage(getContext(), pException);
     }
 
 }
