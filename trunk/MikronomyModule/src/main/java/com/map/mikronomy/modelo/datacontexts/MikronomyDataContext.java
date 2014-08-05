@@ -1,6 +1,7 @@
 package com.map.mikronomy.modelo.datacontexts;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
 import com.map.mikronomy.helper.ExceptionHelper;
@@ -10,6 +11,7 @@ import com.map.mikronomy.modelo.entidades.Producto;
 import com.map.mikronomy.modelo.entidades.ProductoTienda;
 import com.map.mikronomy.modelo.entidades.Tienda;
 import com.map.mikronomy.modelo.helpers.DBHelper;
+import com.map.mikronomy.modelo.helpers.TiendaLoaderHelper;
 import com.map.mikronomy.modelo.setters.TiendaObjectSet;
 import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
@@ -30,10 +32,29 @@ public class MikronomyDataContext extends ObjectContext{
     public ObjectSet<Tienda> tiendaEntitySet;
     public ObjectSet<ProductoTienda> productoTiendaEntitySet;
 
-    public MikronomyDataContext(Context pContext) throws AdaFrameworkException {
+    private static MikronomyDataContext dataContextInstance;
+
+    public static MikronomyDataContext getInstance (Context pContext) {
+        try {
+            if (dataContextInstance == null)
+                dataContextInstance = new MikronomyDataContext(pContext);
+
+        } catch (Exception e) {
+            ExceptionHelper.manage(e);
+        }
+        return dataContextInstance;
+    }
+
+    public MikronomyDataContext(Context pContext) {
+
         super(pContext, String.format("%s%s", getDataBaseFolder(), DATABASE_NAME), DATABASE_VERSION);
 
-        inicializarContexto();
+        try {
+            inicializarContexto();
+        } catch (Exception e) {
+            ExceptionHelper.manage(pContext, e);
+        }
+
     }
 
     private void inicializarContexto() throws AdaFrameworkException {
@@ -85,8 +106,22 @@ public class MikronomyDataContext extends ObjectContext{
     }
 
     @Override
+    protected void onPopulate(SQLiteDatabase pDatabase, int pAction) {
+        try {
+
+            tiendaEntitySet.addAll(TiendaLoaderHelper.getList(getContext()));
+            tiendaEntitySet.save(pDatabase);
+
+        } catch (Exception e) {
+            ExceptionHelper.manage(getContext(), e);
+        }
+
+    }
+
+    @Override
     protected void onError(Exception pException) {
         ExceptionHelper.manage(getContext(), pException);
     }
+
 
 }

@@ -25,7 +25,7 @@ public class TiendaLoaderHelper {
 
             if (pContext != null) {
 
-                InputStream input = pContext.getAssets().open("countries.json");
+                InputStream input = pContext.getAssets().open("tiendas.json");
                 if (input != null) {
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(input));

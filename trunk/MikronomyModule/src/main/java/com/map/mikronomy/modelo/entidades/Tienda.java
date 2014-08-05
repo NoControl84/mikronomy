@@ -18,7 +18,6 @@ public class Tienda extends Entity{
     public final static String TIENDA_DEFAULT = "Otra";
 
     @TableField(name = "NombreTienda", datatype = DATATYPE_STRING, required = true, unique = true)
-    @Databinding(ViewId = R.id.SPI_Tienda)
     @TableIndex(name = "INX_NombreTienda")
     private String nombreTienda;
 
@@ -32,5 +31,13 @@ public class Tienda extends Entity{
             this.nombreTienda = nombreTienda;
         else
             this.nombreTienda = TIENDA_DEFAULT;
+    }
+
+    public String getNombreTienda() {
+        return nombreTienda;
+    }
+
+    public void setNombreTienda(String nombreTienda) {
+        this.nombreTienda = nombreTienda;
     }
 }
