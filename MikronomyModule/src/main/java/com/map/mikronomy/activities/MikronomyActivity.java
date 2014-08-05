@@ -17,7 +17,7 @@ public class MikronomyActivity extends MikronomyBaseActivity {
 
         try {
             setContentView(com.map.mikronomy.R.layout.activity_mikronomy);
-            mikronomyDataContext = new MikronomyDataContext(this);
+            mikronomyDataContext = MikronomyDataContext.getInstance(this);
 
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();

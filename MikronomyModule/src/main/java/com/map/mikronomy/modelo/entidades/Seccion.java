@@ -18,7 +18,6 @@ public class Seccion extends Entity{
     public static final String COL_DESCRIPCION = "Descripcion";
 
     @TableField(name = "Descripcion", datatype = DATATYPE_STRING, required = true, unique = true)
-    @Databinding(ViewId = R.id.SPI_Secciones)
     private String descripcion;
     @TableField(name = "Producto", datatype = DATATYPE_ENTITY_LINK)
     private Producto producto;

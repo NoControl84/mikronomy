@@ -23,7 +23,6 @@ public class ProductoTienda extends Entity{
     @Databinding(ViewId = R.id.DecTXT_Precio)
     private float precio;
     @TableField(name = "Medida", datatype = DATATYPE_STRING)
-    @Databinding(ViewId = R.id.SPI_UdMedida)
     private String medida;
     @TableField(name = "Producto", datatype = DATATYPE_ENTITY_LINK)
     private Producto producto;
