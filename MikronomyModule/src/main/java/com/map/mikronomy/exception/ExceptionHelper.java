@@ -1,4 +1,4 @@
-package com.map.mikronomy.helper;
+package com.map.mikronomy.exception;
 
 import android.content.Context;
 import android.widget.Toast;

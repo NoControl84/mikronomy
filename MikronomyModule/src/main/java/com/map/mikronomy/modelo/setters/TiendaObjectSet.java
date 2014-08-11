@@ -1,6 +1,6 @@
 package com.map.mikronomy.modelo.setters;
 
-import com.map.mikronomy.helper.ExceptionHelper;
+import com.map.mikronomy.exception.ExceptionHelper;
 import com.map.mikronomy.modelo.entidades.Tienda;
 import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
