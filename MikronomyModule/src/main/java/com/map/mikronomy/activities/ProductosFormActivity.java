@@ -5,17 +5,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.map.mikronomy.R;
+import com.map.mikronomy.adapters.SpinnerAdapter;
 import com.map.mikronomy.helper.ExceptionHelper;
 import com.map.mikronomy.modelo.datacontexts.MikronomyDataContext;
 import com.map.mikronomy.modelo.entidades.Tienda;
-import com.map.mikronomy.modelo.helpers.DBHelper;
-import com.map.mikronomy.modelo.setters.TiendaObjectSet;
 import com.mobandme.ada.ObjectSet;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ProductosFormActivity extends MikronomyBaseActivity {
@@ -29,9 +26,15 @@ public class ProductosFormActivity extends MikronomyBaseActivity {
             setContentView(R.layout.activity_productos_form);
 
             List<String> listaTienda = getListNameTienda();
-            ArrayAdapter<String> tiendaArrayAdapter = getArrayAdapter(android.R.layout.simple_spinner_dropdown_item, listaTienda);
+
+            /*
+            ArrayAdapter<String> tiendaAdapter = getArrayAdapter(listaTienda);
             Spinner tiendaSpinner = (Spinner)findViewById(R.id.SPI_Tienda);
-            tiendaSpinner.setAdapter(tiendaArrayAdapter);
+            tiendaSpinner.setAdapter(tiendaAdapter); */
+
+            SpinnerAdapter tiendaAdapter = SpinnerAdapter.getSpinnerAdapter(this, listaTienda);
+            Spinner tiendaSpinner = (Spinner)findViewById(R.id.SPI_Tienda);
+            tiendaSpinner.setAdapter(tiendaAdapter);
 
             Spinner seccionSpinner = getSimpleDropdownSpinnerByID(R.id.SPI_Secciones, R.array.seccion_array);
             Spinner unidadMedidaSpinner = getSimpleDropdownSpinnerByID(R.id.SPI_UdMedida, R.array.medida_array);
@@ -79,9 +82,9 @@ public class ProductosFormActivity extends MikronomyBaseActivity {
         return arrayAdapter;
     }
 
-    private  ArrayAdapter<String> getArrayAdapter (int spinnerItemTypeID, List<String> list) {
+    private  ArrayAdapter<String> getArrayAdapter (List<String> list) {
         ArrayAdapter<String> arrayAdapter =
-            new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+            new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
 
         return arrayAdapter;
     }

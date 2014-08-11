@@ -77,6 +77,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/SPI_Tienda"
+                android:background="@drawable/spinner_background"
                 android:spinnerMode="dropdown" />
             <Button
                 android:layout_width="wrap_content"
@@ -113,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/SPI_Secciones"
                 android:spinnerMode="dropdown"
+                android:background="@drawable/spinner_background"
                 android:minWidth="180dp"
                 android:padding="5dp" />
         </TableRow>
@@ -155,6 +157,7 @@
             <Spinner
                 android:layout_column="1"
                 android:layout_width="120dp"
+                android:background="@drawable/spinner_background"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/SPI_UdMedida" />
