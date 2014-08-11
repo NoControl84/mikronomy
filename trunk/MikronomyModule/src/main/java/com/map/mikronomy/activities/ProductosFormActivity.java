@@ -5,14 +5,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.map.mikronomy.R;
-import com.map.mikronomy.adapters.SpinnerAdapter;
-import com.map.mikronomy.helper.ExceptionHelper;
+import com.map.mikronomy.adapters.CustomSpinnerAdapter;
+import com.map.mikronomy.exception.ExceptionHelper;
 import com.map.mikronomy.modelo.datacontexts.MikronomyDataContext;
 import com.map.mikronomy.modelo.entidades.Tienda;
 import com.mobandme.ada.ObjectSet;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProductosFormActivity extends MikronomyBaseActivity {
@@ -24,24 +25,15 @@ public class ProductosFormActivity extends MikronomyBaseActivity {
         super.onCreate(savedInstanceState);
         try {
             setContentView(R.layout.activity_productos_form);
-
             List<String> listaTienda = getListNameTienda();
+            List<String> listaSeccion = Arrays.asList(getResources().getStringArray(R.array.seccion_array));
+            List<String> listaUdMedida = Arrays.asList(getResources().getStringArray(R.array.medida_array));
 
-            /*
-            ArrayAdapter<String> tiendaAdapter = getArrayAdapter(listaTienda);
-            Spinner tiendaSpinner = (Spinner)findViewById(R.id.SPI_Tienda);
-            tiendaSpinner.setAdapter(tiendaAdapter); */
-
-            SpinnerAdapter tiendaAdapter = SpinnerAdapter.getSpinnerAdapter(this, listaTienda);
-            Spinner tiendaSpinner = (Spinner)findViewById(R.id.SPI_Tienda);
-            tiendaSpinner.setAdapter(tiendaAdapter);
-
-            Spinner seccionSpinner = getSimpleDropdownSpinnerByID(R.id.SPI_Secciones, R.array.seccion_array);
-            Spinner unidadMedidaSpinner = getSimpleDropdownSpinnerByID(R.id.SPI_UdMedida, R.array.medida_array);
+            Spinner tiendaSpinner = getSpinnerWithAdapter(listaTienda, R.id.SPI_Tienda);
+            Spinner seccionSpinner = getSpinnerWithAdapter(listaSeccion, R.id.SPI_Secciones);
+            Spinner udMedidaSpinner = getSpinnerWithAdapter(listaUdMedida, R.id.SPI_UdMedida);
 
 
-            //ArrayAdapter<String> tiendaArrayAdapter = getArrayAdapter(android.R.layout.simple_spinner_dropdown_item);
-            //Spinner tiendaSpinner =
         } catch (Exception e) {
             ExceptionHelper.manage(this, e);
         }
@@ -63,30 +55,13 @@ public class ProductosFormActivity extends MikronomyBaseActivity {
         return listaNombresTienda;
     }
 
-    private Spinner getSimpleDropdownSpinnerByID(int spinnerID, int resArrayID) {
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        Spinner spinner = (Spinner) findViewById(spinnerID);
-        ArrayAdapter<CharSequence> seccionAdapter = ArrayAdapter.createFromResource(this,
-                resArrayID, android.R.layout.simple_spinner_dropdown_item);
-        // Specify the layout to use when the list of choices appears
-        //seccionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(seccionAdapter);
+    private Spinner getSpinnerWithAdapter(List<String> itemList, int spinnerID) {
+        CustomSpinnerAdapter adapter =
+                CustomSpinnerAdapter.getSpinnerAdapter(this, itemList);
+        Spinner spinner = (Spinner)findViewById(spinnerID);
+        spinner.setAdapter(adapter);
 
         return spinner;
-    }
-
-    private ArrayAdapter<CharSequence> getArrayAdapter(int spinnerItemTypeID, int resArrayID) {
-        ArrayAdapter<CharSequence> arrayAdapter =
-                ArrayAdapter.createFromResource(this, resArrayID, spinnerItemTypeID);
-        return arrayAdapter;
-    }
-
-    private  ArrayAdapter<String> getArrayAdapter (List<String> list) {
-        ArrayAdapter<String> arrayAdapter =
-            new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
-
-        return arrayAdapter;
     }
 
 

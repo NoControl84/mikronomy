@@ -2,7 +2,7 @@ package com.map.mikronomy.modelo.helpers;
 
 import android.content.Context;
 
-import com.map.mikronomy.helper.ExceptionHelper;
+import com.map.mikronomy.exception.ExceptionHelper;
 import com.map.mikronomy.modelo.entidades.Tienda;
 
 import org.json.JSONArray;

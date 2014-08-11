@@ -5,25 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.map.mikronomy.R;
-import com.map.mikronomy.helper.ExceptionHelper;
+import com.map.mikronomy.exception.ExceptionHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static android.R.layout.simple_spinner_dropdown_item;
 
 /**
  * Created by Mikel on 11/08/2014.
  */
-public class SpinnerAdapter extends ArrayAdapter<String>{
+public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
 
-    List<String> list;
+    List<CharSequence> list;
     Context context;
 
-    public SpinnerAdapter(Context context, List<String> list) {
+    public CustomSpinnerAdapter(Context context, List<CharSequence> list) {
         super(context, android.R.layout.simple_spinner_dropdown_item, list);
         this.context = context;
         this.list = list;
@@ -47,7 +45,7 @@ public class SpinnerAdapter extends ArrayAdapter<String>{
                 row = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
             }
 
-            String item = getItem(position);
+            CharSequence item = getItem(position);
 
             ((TextView)row).setText(item);
 
@@ -58,8 +56,23 @@ public class SpinnerAdapter extends ArrayAdapter<String>{
         return row;
     }
 
-    public static SpinnerAdapter getSpinnerAdapter(Context context, List<String> list) {
-        SpinnerAdapter adapter = new SpinnerAdapter(context, list);
+    public static CustomSpinnerAdapter getSpinnerAdapter(Context context, List<String> list) {
+        List<CharSequence> csList = null;
+        int size = list == null ? 0 : list.size();
+
+        CharSequence[] csArray = list.toArray(new CharSequence[size]);
+        csList = Arrays.asList(csArray);
+
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(context, csList);
+
+        return adapter;
+    }
+
+    public static CustomSpinnerAdapter getSpinnerAdapter(Context context, CharSequence[] csArray) {
+        List<CharSequence> csList =
+                csArray == null ? new ArrayList<CharSequence>() : Arrays.asList(csArray);
+
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(context, csList);
 
         return adapter;
     }

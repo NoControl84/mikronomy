@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
-import com.map.mikronomy.helper.ExceptionHelper;
+import com.map.mikronomy.exception.ExceptionHelper;
 import com.map.mikronomy.modelo.entidades.Seccion;
 import com.map.mikronomy.modelo.entidades.Marca;
 import com.map.mikronomy.modelo.entidades.Producto;
