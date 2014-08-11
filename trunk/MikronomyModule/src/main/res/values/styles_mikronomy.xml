@@ -3,4 +3,5 @@
 <resources>
     <color name="custom_theme_color">#fff0ecff</color>
     <style name="MikronomyTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
+    <color name="mikronomy_spinner_color">#F9F3A3</color>
 </resources>
