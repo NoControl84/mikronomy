@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.map.mikronomy.exception.ExceptionHelper;
+import com.map.mikronomy.exceptions.ExceptionHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;

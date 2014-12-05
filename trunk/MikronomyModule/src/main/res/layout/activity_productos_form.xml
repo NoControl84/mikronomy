@@ -85,6 +85,7 @@
                 android:text="@string/label_aniadir_tienda"
                 android:textSize="13sp"
                 android:id="@+id/BUT_AddTienda"
+                android:onClick="onClick"
                 android:enabled="true"
                 android:layout_gravity="center|left"
                 android:layout_column="1" />

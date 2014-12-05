@@ -20,4 +20,8 @@
     <string name="unidad_medida">Unidad de medida</string>
     <string name="campo_obligatorio_marca">La marca del producto es obligatoria</string>
     <string name="campo_obligatorio_producto">El nombre del producto es obligatorio</string>
+
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+
 </resources>

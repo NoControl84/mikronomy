@@ -1,6 +1,6 @@
 package com.map.mikronomy.modelo.setters;
 
-import com.map.mikronomy.exception.ExceptionHelper;
+import com.map.mikronomy.exceptions.ExceptionHelper;
 import com.map.mikronomy.modelo.entidades.Tienda;
 import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
@@ -25,7 +25,7 @@ public class TiendaObjectSet extends ObjectSet<Tienda>{
 
         try {
             if (nombre != null && !nombre.trim().isEmpty()) {
-                String wherePattern = String.format("%s = ?", getDataTableFieldName("NombreTienda"));
+                String wherePattern = String.format("%s = ?", getDataTableFieldName(Tienda.COL_NOMBRE_TIENDA));
                 String[] whereValues = new String[]{nombre};
                 //Limitar a un resultado
                 List<Tienda> listaTiendas = search(true, wherePattern, whereValues, null, null, null, 0, 1);

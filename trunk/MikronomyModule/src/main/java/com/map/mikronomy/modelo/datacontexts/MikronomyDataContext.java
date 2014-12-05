@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
-import com.map.mikronomy.exception.ExceptionHelper;
+import com.map.mikronomy.exceptions.ExceptionHelper;
 import com.map.mikronomy.modelo.entidades.Seccion;
 import com.map.mikronomy.modelo.entidades.Marca;
 import com.map.mikronomy.modelo.entidades.Producto;
@@ -19,6 +19,7 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 
 import java.io.File;
+import java.util.List;
 
 public class MikronomyDataContext extends ObjectContext{
 
@@ -85,7 +86,10 @@ public class MikronomyDataContext extends ObjectContext{
         productoEntitySet.fill(DBHelper.orderByColumn(Producto.COL_NOMBRE_PRODUCTO, DBHelper.ASCENDING_SORT));
         tiendaEntitySet.fill(DBHelper.orderByColumn(Tienda.COL_NOMBRE_TIENDA, DBHelper.ASCENDING_SORT));
         productoTiendaEntitySet.fill(DBHelper.orderByColumn(ProductoTienda.COL_PRECIO, DBHelper.ASCENDING_SORT));
+
     }
+
+
 
     private static String getDataBaseFolder() {
         String folderPath = "";

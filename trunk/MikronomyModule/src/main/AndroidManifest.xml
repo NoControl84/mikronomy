@@ -12,8 +12,8 @@
 
         <!-- android:theme="@style/MikronomyTheme" -->
         <uses-sdk
-            android:maxSdkVersion="20"
-            android:minSdkVersion="16"
+            android:maxSdkVersion="21"
+            android:minSdkVersion="14"
             android:targetSdkVersion="16" />
 
         <activity
