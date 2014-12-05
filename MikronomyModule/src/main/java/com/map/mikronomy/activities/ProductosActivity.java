@@ -15,7 +15,7 @@ public class ProductosActivity extends MikronomyBaseActivity {
         setContentView(R.layout.activity_productos);
     }
 
-    public void onCLick(View pView) {
+    public void onClick(View pView) {
         try{
             if (pView != null) {
                 switch (pView.getId()) {
