@@ -35,7 +35,7 @@ public class TiendaObjectSet extends ObjectSet<Tienda>{
                     tienda = new Tienda(nombre);
                     //Salvar en la BBDD
                     save(tienda);
-                    //Añadirla al ObjectSet
+                    //Añadir al ObjectSet
                     add(tienda);
                 }
 

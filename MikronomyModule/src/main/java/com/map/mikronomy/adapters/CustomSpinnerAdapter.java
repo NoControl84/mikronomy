@@ -21,6 +21,10 @@ public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
     List<CharSequence> list;
     Context context;
 
+    public List<CharSequence> getList() {
+        return list;
+    }
+
     public CustomSpinnerAdapter(Context context, List<CharSequence> list) {
         super(context, android.R.layout.simple_spinner_dropdown_item, list);
         this.context = context;
