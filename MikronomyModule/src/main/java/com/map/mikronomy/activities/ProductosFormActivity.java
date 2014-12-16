@@ -1,11 +1,9 @@
 package com.map.mikronomy.activities;
 
-import android.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
-import android.util.SparseArray;
 import android.view.View;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.map.mikronomy.R;
 import com.map.mikronomy.adapters.CustomSpinnerAdapter;
@@ -23,14 +21,11 @@ import java.util.List;
 public class ProductosFormActivity extends MikronomyBaseActivity implements TiendaDialogFragment.TiendaDialogListener{
 
     private MikronomyDataContext mikronomyDataContext;
-    TiendaDialogFragment tiendaPopUp;
-    private SparseArray<Spinner> mappedSpinners;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            tiendaPopUp = tiendaPopUp == null ? new TiendaDialogFragment() : this.tiendaPopUp;
 
             setContentView(R.layout.activity_productos_form);
 
@@ -47,21 +42,6 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
         }
     }
 
-    public void onClick(View view) {
-        try {
-            if (view != null) {
-               switch (view.getId()){
-                   case R.id.BUT_AddTienda:
-                       tiendaPopUp.show(getFragmentManager(), "Añada el nombre de la tienda");
-                       break;
-               }
-
-            }
-        } catch (Exception e) {
-            ExceptionHelper.manage(this, e);
-        }
-    }
-
     private List<String> getListNameTienda() throws AdaFrameworkException {
         List<Tienda> tiendaList;
         List<String> listaNombresTienda = new ArrayList<>();
@@ -72,7 +52,7 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
         tiendaList = tiendaSet.search(true, null, null, Tienda.COL_NOMBRE_TIENDA, null, null, null, null);
 
         for (Tienda tienda : tiendaList) {
-            listaNombresTienda.add(tienda.getNombreTienda());
+            listaNombresTienda.add(tienda.toString());
         }
 
         return listaNombresTienda;
@@ -84,24 +64,58 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
         Spinner spinner = (Spinner)findViewById(spinnerID);
         spinner.setAdapter(adapter);
 
-        //registerAdapter(spinnerID, spinner);
     }
 
-    private void registerAdapter(int spinnerID, Spinner spinner) {
-        if (mappedSpinners == null)
-            mappedSpinners = new SparseArray<>();
 
-        mappedSpinners.put(spinnerID, spinner);
+
+    public void onClick(View view) {
+        try {
+            if (view != null) {
+               switch (view.getId()){
+                   case R.id.BUT_AddTienda:
+                       showNoticeDialog();
+                       break;
+               }
+
+            }
+        } catch (Exception e) {
+            ExceptionHelper.manage(this, e);
+        }
     }
 
+    public void showNoticeDialog() {
+        // Create an instance of the dialog fragment and show it
+        DialogFragment dialog = new TiendaDialogFragment();
+        dialog.show(getSupportFragmentManager(), "TiendaDialogFragment");
+    }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        Toast.makeText(this, "Prueba", Toast.LENGTH_SHORT);
+    public void onDialogPositiveClick(DialogFragment dialog, String nombreTienda) {
+        Tienda tienda = null;
+        if (nombreTienda != null) {
+            try {
+                tienda = new Tienda(nombreTienda);
+                if (tienda.toString() != null && !tienda.toString().trim().isEmpty()) {
+                    Spinner tiendaSpinner = (Spinner) this.findViewById(R.id.SPI_Tienda);
+                    CustomSpinnerAdapter spinnerAdapter = (CustomSpinnerAdapter) tiendaSpinner.getAdapter();
+
+                    ArrayList<CharSequence> listaTiendas = new ArrayList<>(spinnerAdapter.getList());
+                    listaTiendas.add(tienda.toString());
+
+                    spinnerAdapter = new CustomSpinnerAdapter(this, listaTiendas);
+                    tiendaSpinner.setAdapter(spinnerAdapter);
+                    spinnerAdapter.notifyDataSetChanged();
+
+                    mikronomyDataContext.tiendaEntitySet.add(tienda);
+                    mikronomyDataContext.tiendaEntitySet.save();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
-
     }
 }
