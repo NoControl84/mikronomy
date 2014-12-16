@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Mikel on 11/08/2014.
+ * Created by Mikel on 11/08/2014. as
  */
 public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
 
@@ -61,25 +61,13 @@ public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
     }
 
     public static CustomSpinnerAdapter getSpinnerAdapter(Context context, List<String> list) {
-        List<CharSequence> csList = null;
-        int size = list == null ? 0 : list.size();
+        List<CharSequence> csList = new ArrayList<>();
 
-        CharSequence[] csArray = list.toArray(new CharSequence[size]);
-        csList = Arrays.asList(csArray);
-
-        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(context, csList);
-
-        return adapter;
+        if (list != null) {
+            CharSequence[] csArray = list.toArray(new CharSequence[list.size()]);
+            csList = Arrays.asList(csArray);
+        }
+        return new CustomSpinnerAdapter(context, csList);
     }
-
-    public static CustomSpinnerAdapter getSpinnerAdapter(Context context, CharSequence[] csArray) {
-        List<CharSequence> csList =
-                csArray == null ? new ArrayList<CharSequence>() : Arrays.asList(csArray);
-
-        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(context, csList);
-
-        return adapter;
-    }
-
 
 }
