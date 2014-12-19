@@ -7,15 +7,16 @@ import android.widget.Spinner;
 
 import com.map.mikronomy.R;
 import com.map.mikronomy.adapters.CustomSpinnerAdapter;
+import com.map.mikronomy.adapters.EntityAdapter;
 import com.map.mikronomy.exceptions.ExceptionHelper;
 import com.map.mikronomy.fragments.TiendaDialogFragment;
 import com.map.mikronomy.modelo.datacontexts.MikronomyDataContext;
 import com.map.mikronomy.modelo.entidades.Tienda;
+import com.mobandme.ada.Entity;
 import com.mobandme.ada.ObjectSet;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ProductosFormActivity extends MikronomyBaseActivity implements TiendaDialogFragment.TiendaDialogListener{
@@ -29,20 +30,20 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
 
             setContentView(R.layout.activity_productos_form);
 
-            List<String> listaTienda = getListNameTienda();
-            List<String> listaSeccion = Arrays.asList(getResources().getStringArray(R.array.seccion_array));
-            List<String> listaUdMedida = Arrays.asList(getResources().getStringArray(R.array.medida_array));
+            List<? extends Entity> listaTienda = getListNameTienda();
+            //List<String> listaSeccion = Arrays.asList(getResources().getStringArray(R.array.seccion_array));
+            //List<String> listaUdMedida = Arrays.asList(getResources().getStringArray(R.array.medida_array));
 
-            createSpinnerWithAdapter(listaTienda, R.id.SPI_Tienda);
-            createSpinnerWithAdapter(listaSeccion, R.id.SPI_Secciones);
-            createSpinnerWithAdapter(listaUdMedida, R.id.SPI_UdMedida);
+            createSpinnerWithAdapter2(listaTienda, R.id.SPI_Tienda);
+            //createSpinnerWithAdapter(listaSeccion, R.id.SPI_Secciones);
+            //createSpinnerWithAdapter(listaUdMedida, R.id.SPI_UdMedida);
 
         } catch (Exception e) {
             ExceptionHelper.manage(this, e);
         }
     }
 
-    private List<String> getListNameTienda() throws AdaFrameworkException {
+    private List<Tienda> getListNameTienda() throws AdaFrameworkException {
         List<Tienda> tiendaList;
         List<String> listaNombresTienda = new ArrayList<>();
 
@@ -51,11 +52,12 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
 
         tiendaList = tiendaSet.search(true, null, null, Tienda.COL_NOMBRE_TIENDA, null, null, null, null);
 
+        /*
         for (Tienda tienda : tiendaList) {
             listaNombresTienda.add(tienda.toString());
-        }
+        } */
 
-        return listaNombresTienda;
+        return tiendaList;
     }
 
     private void createSpinnerWithAdapter(List<String> itemList, int spinnerID) {
@@ -66,6 +68,12 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
 
     }
 
+    private void createSpinnerWithAdapter2(List<? extends Entity> itemList, int spinnerID) {
+        EntityAdapter adapter = new EntityAdapter(this, itemList);
+        Spinner spinner = (Spinner)findViewById(spinnerID);
+        spinner.setAdapter(adapter);
+
+    }
 
 
     public void onClick(View view) {
@@ -91,22 +99,22 @@ public class ProductosFormActivity extends MikronomyBaseActivity implements Tien
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, String nombreTienda) {
-        Tienda tienda = null;
+        Entity tienda = null;
         if (nombreTienda != null) {
             try {
                 tienda = new Tienda(nombreTienda);
                 if (tienda.toString() != null && !tienda.toString().trim().isEmpty()) {
                     Spinner tiendaSpinner = (Spinner) this.findViewById(R.id.SPI_Tienda);
-                    CustomSpinnerAdapter spinnerAdapter = (CustomSpinnerAdapter) tiendaSpinner.getAdapter();
+                    EntityAdapter spinnerAdapter = (EntityAdapter) tiendaSpinner.getAdapter();
 
-                    ArrayList<CharSequence> listaTiendas = new ArrayList<>(spinnerAdapter.getList());
-                    listaTiendas.add(tienda.toString());
+                    ArrayList<Entity> listaTiendas = new ArrayList<>(spinnerAdapter.getList());
+                    listaTiendas.add(tienda);
 
-                    spinnerAdapter = new CustomSpinnerAdapter(this, listaTiendas);
+                    spinnerAdapter = new EntityAdapter(this, listaTiendas);
                     tiendaSpinner.setAdapter(spinnerAdapter);
                     spinnerAdapter.notifyDataSetChanged();
 
-                    mikronomyDataContext.tiendaEntitySet.add(tienda);
+                    mikronomyDataContext.tiendaEntitySet.add((Tienda)tienda);
                     mikronomyDataContext.tiendaEntitySet.save();
                 }
             } catch (Exception e) {
