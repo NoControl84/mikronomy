@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mikel on 31/07/2014.
+ * Created by Mikel on 31/07/2014. Obtiene listado por defecto de Tiendas
  */
 public class TiendaLoaderHelper {
     public static List<Tienda> getList(Context pContext) {
-        List<Tienda> tiendaList = new ArrayList<Tienda>();
+        List<Tienda> tiendaList = new ArrayList<>();
 
         try {
             String data = null;
