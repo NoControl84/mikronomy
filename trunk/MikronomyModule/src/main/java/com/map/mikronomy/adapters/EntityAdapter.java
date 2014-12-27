@@ -13,12 +13,14 @@ import com.mobandme.ada.Entity;
 import java.util.List;
 
 /**
- * Created by Mikel on 11/08/2014.
+ * Created by Mikel on 11/08/2014. ArrayAdapter de elementos de tipo Entity
  */
 public class EntityAdapter extends ArrayAdapter<Entity>{
 
     List<? extends Entity> list;
     Context context;
+
+
 
     public List<? extends Entity> getList() {
         return list;
@@ -44,10 +46,7 @@ public class EntityAdapter extends ArrayAdapter<Entity>{
 
         try {
 
-            if (row == null) {
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
-            }
+            row = getRow(parent, row);
 
             Entity item = getItem(position);
 
@@ -60,6 +59,13 @@ public class EntityAdapter extends ArrayAdapter<Entity>{
         return row;
     }
 
+    private View getRow(ViewGroup parent, View row) {
+        if (row == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
+        }
+        return row;
+    }
 
 
 }

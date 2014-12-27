@@ -9,23 +9,17 @@ import android.widget.TextView;
 
 import com.map.mikronomy.exceptions.ExceptionHelper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by Mikel on 11/08/2014. as
  */
-public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
+public class StringAdapter extends ArrayAdapter<String>{
 
-    List<CharSequence> list;
+    List<String> list;
     Context context;
 
-    public List<CharSequence> getList() {
-        return list;
-    }
-
-    public CustomSpinnerAdapter(Context context, List<CharSequence> list) {
+    public StringAdapter(Context context, List<String> list) {
         super(context, android.R.layout.simple_spinner_dropdown_item, list);
         this.context = context;
         this.list = list;
@@ -44,10 +38,7 @@ public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
 
         try {
 
-            if (row == null) {
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
-            }
+            row = getRow(parent, row);
 
             CharSequence item = getItem(position);
 
@@ -60,14 +51,12 @@ public class CustomSpinnerAdapter extends ArrayAdapter<CharSequence>{
         return row;
     }
 
-    public static CustomSpinnerAdapter getSpinnerAdapter(Context context, List<String> list) {
-        List<CharSequence> csList = new ArrayList<>();
-
-        if (list != null) {
-            CharSequence[] csArray = list.toArray(new CharSequence[list.size()]);
-            csList = Arrays.asList(csArray);
+    private View getRow(ViewGroup parent, View row) {
+        if (row == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
         }
-        return new CustomSpinnerAdapter(context, csList);
+        return row;
     }
 
 }

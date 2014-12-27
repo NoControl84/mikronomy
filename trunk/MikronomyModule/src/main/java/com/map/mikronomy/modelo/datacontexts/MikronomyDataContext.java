@@ -19,7 +19,6 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 
 import java.io.File;
-import java.util.List;
 
 public class MikronomyDataContext extends ObjectContext{
 
@@ -75,11 +74,11 @@ public class MikronomyDataContext extends ObjectContext{
         //Set a custom encryption master pass phrase.
         this.setMasterEncryptionKey("com.mikronomy.secure");
 
-        marcaEntitySet = marcaEntitySet == null ? new ObjectSet<Marca>(Marca.class, this) : marcaEntitySet;
-        seccionEntitySet = seccionEntitySet == null ? new ObjectSet<Seccion>(Seccion.class, this) : seccionEntitySet;
-        productoEntitySet = productoEntitySet == null ? new ObjectSet<Producto>(Producto.class, this) : productoEntitySet;
+        marcaEntitySet = marcaEntitySet == null ? new ObjectSet<>(Marca.class, this) : marcaEntitySet;
+        seccionEntitySet = seccionEntitySet == null ? new ObjectSet<>(Seccion.class, this) : seccionEntitySet;
+        productoEntitySet = productoEntitySet == null ? new ObjectSet<>(Producto.class, this) : productoEntitySet;
         tiendaEntitySet = tiendaEntitySet == null ? new TiendaObjectSet(this) : tiendaEntitySet;
-        productoTiendaEntitySet = productoTiendaEntitySet == null ? new ObjectSet<ProductoTienda>(ProductoTienda.class, this) : productoTiendaEntitySet;
+        productoTiendaEntitySet = productoTiendaEntitySet == null ? new ObjectSet<>(ProductoTienda.class, this) : productoTiendaEntitySet;
 
         marcaEntitySet.fill(DBHelper.orderByColumn(Marca.COL_NOMBRE_MARCA, DBHelper.ASCENDING_SORT));
         seccionEntitySet.fill(DBHelper.orderByColumn(Seccion.COL_DESCRIPCION, DBHelper.ASCENDING_SORT));
